@@ -1,7 +1,18 @@
 {
   "Deploy": {
     "Project": {
-      "Workspaces": []
+      "Name": "myhandbooksite",
+      "Alias": "myhandbooksite",
+      "Id": "9c78e097-46f9-4c38-9649-d304920b0cef",
+      "TrialExpireDate": "2025-07-07T22:19:27.0000000",
+      "Workspaces": [
+        {
+          "Id": "c3239c22-a03d-4dde-b52e-ecb87158c4f4",
+          "Name": "Live",
+          "Type": "live",
+          "Url": "https://myhandbooksite.useast01.umbraco.io"
+        }
+      ]
     },
     "Settings": {}
   },
