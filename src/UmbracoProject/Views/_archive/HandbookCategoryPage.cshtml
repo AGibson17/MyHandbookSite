@@ -1,0 +1,20 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HandbookCategoryPage>
+
+@{
+    Layout = "~/Views/Shared/HandbookSite.cshtml";
+    var categoryTitle = Model.Value("categoryTitle");
+    var categoryDescription = Model.Value("categoryDescription");
+}
+
+<section class="category-grid">
+    <div class="category-card selected">
+        <h2>@categoryTitle</h2>
+        <p>@categoryDescription</p>
+    </div>
+</section>
+
+<section class="mt-2">
+    @Html.GetBlockListHtml(Model, "policyBlocks")
+</section>

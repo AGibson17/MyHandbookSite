@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap");
+
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    scroll-behavior: smooth;
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden; 
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: "Raleway", Arial, sans-serif;
+    color: var(--iti-navy);
+    background: var(--white);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    height: 100vh; 
+    overflow: hidden; 
+}
+
+.handbook-main {
+    padding-top: 24px;
+    padding-bottom: 48px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', Arial, sans-serif;
+    margin: 0 0 0.5em 0;
+    font-weight: 700;
+    color: var(--iti-navy);
+}
+
+.text-center {
+    text-align: center;
+}
+
+a {
+    color: var(--iti-blue);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover, a:focus {
+    color: var(--iti-red);
+    outline: none;
+}
+
+button, input[type=button], input[type=submit] {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.6em 1.2em;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: var(--iti-blue);
+    color: var(--white);
+    transition: background 0.2s;
+}
+
+button:hover, button:focus {
+    background: var(--iti-navy);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}

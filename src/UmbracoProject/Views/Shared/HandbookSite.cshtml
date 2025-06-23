@@ -1,0 +1,26 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    @{
+        var pageTitle = Model.Value<string>("pageTitle") ?? "Employee Handbook";
+    }
+    <title>@pageTitle</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/css/main.css?v=@DateTime.UtcNow.Ticks" />
+    <script src="~/scripts/accordion.js" defer></script>
+    <script src="~/scripts/tabbed-navigation.js" defer></script>
+</head>
+<body>
+
+    <!-- Removed the global .handbook-toolbar section to avoid duplicate state selector -->
+
+    <main class="handbook-main">
+        @RenderBody()
+    </main>
+
+</body>
+</html>

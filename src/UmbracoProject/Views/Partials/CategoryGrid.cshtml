@@ -1,0 +1,39 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
+
+@{
+    var selectedState = Context.Request.Query["state"].ToString()?.ToUpperInvariant();
+    var categories = Model.Descendants().Where(x => x.ContentType.Alias == "HandbookCategoryPage").ToList();
+}
+
+<section class="category-header">
+    <h1>All Policies</h1>
+    <p>Use the search bar to find a specific policy. Or, select a category below to view all related policies.</p>
+</section>
+
+<div class="policy-searchbar">
+    <input type="text" placeholder="Search policies...">
+</div>
+
+@if (categories.Any())
+{
+    <div class="category-grid">
+        @foreach (var category in categories)
+        {
+            <button type="button"
+                    class="category-card policy-category-btn"
+                    data-category-id="@category.Id"
+                    data-state="@selectedState"
+                    data-active="false">
+                <h2>@(category.Value<string>("categoryTitle") ?? category.Name)</h2>
+                @if (category.HasValue("categoryDescription"))
+                {
+                    <p>@category.Value("categoryDescription")</p>
+                }
+            </button>
+        }
+    </div>
+}
+else
+{
+    <p class="text-center">No policy categories available.</p>
+}

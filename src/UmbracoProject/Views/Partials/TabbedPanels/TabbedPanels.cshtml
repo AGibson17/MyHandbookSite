@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models.PublishedContent
+
+@{
+    var selectedState = Context.Request.Query["state"].ToString()?.ToUpperInvariant();
+    var policies = Model.Children().Where(x => x.ContentType.Alias == "policy").ToList();
+}
+
+<section class="tabbed-panels" role="region">
+    <div id="panel-welcome" class="tab-panel" role="tabpanel" aria-labelledby="tab-welcome">
+        @await Html.PartialAsync("TabbedPanels/WelcomePanel")
+    </div>
+
+    <div id="panel-using" class="tab-panel" role="tabpanel" aria-labelledby="tab-using" hidden>
+        @await Html.PartialAsync("TabbedPanels/UsingHandbookPanel")
+    </div>
+
+    <div id="panel-policies" class="tab-panel" role="tabpanel" aria-labelledby="tab-policies" hidden>
+        <div id="category-grid">
+            @await Html.PartialAsync("Partials/CategoryGrid", Model)
+        </div>
+        <div id="policies-category-content" style="display: none;"></div>
+    </div>
+
+    <div id="panel-help" class="tab-panel" role="tabpanel" aria-labelledby="tab-help" hidden>
+        @await Html.PartialAsync("TabbedPanels/NeedHelpPanel")
+    </div>
+</section>

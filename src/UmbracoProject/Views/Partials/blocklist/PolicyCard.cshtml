@@ -1,0 +1,69 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>
+
+@using Umbraco.Cms.Core.Models.PublishedContent
+
+@{
+    var policy = Model;
+    var cardId = $"policy-{policy.Id}";
+    var selectedState = Context.Request.Query["state"].ToString()?.ToUpperInvariant();
+
+    var overlay = !string.IsNullOrEmpty(selectedState)
+        ? policy.Value<IEnumerable<IPublishedElement>>("stateOverlays")
+            ?.FirstOrDefault(o => o.Value<string>("stateCode")?.ToUpper() == selectedState)
+        : null;
+}
+
+<article class="policy-card">
+    <header class="policy-header">
+        <button class="policy-toggle"
+                data-action="toggle-policy"
+                data-target="@cardId"
+                aria-expanded="false"
+                aria-controls="@cardId">
+            @if (!string.IsNullOrWhiteSpace(policy?.Value<string>("policyTitle")))
+            {
+                <span>@(policy.Value<string>("policyTitle"))</span>
+            }
+        </button>
+    </header>
+
+    @if (!string.IsNullOrWhiteSpace(policy?.Value<string>("summary")))
+    {
+        <div class="policy-summary-preview">
+            <p class="policy-summary-text">@(policy.Value<string>("summary"))</p>
+        </div>
+    }
+
+    <section id="@cardId" class="policy-card-content" hidden>
+        @if (!string.IsNullOrWhiteSpace(policy?.Value<string>("fullPolicyText")))
+        {
+            <div class="policy-full-text">
+                @Html.Raw(policy.Value<string>("fullPolicyText"))
+            </div>
+        }
+
+        @if (overlay != null && !string.IsNullOrWhiteSpace(overlay.Value<string>("statePolicyText")))
+        {
+            <div class="policy-overlay" data-state-code="@(overlay.Value<string>("stateCode"))">
+                <h4>
+                    @if (!string.IsNullOrWhiteSpace(overlay.Value<string>("stateName")))
+                    {
+                        <span>@(overlay.Value<string>("stateName") + " Policy")</span>
+                    }
+                    else
+                    {
+                        <span>State-Specific Policy</span>
+                    }
+                </h4>
+                @Html.Raw(overlay.Value<string>("statePolicyText"))
+            </div>
+        }
+    </section>
+
+    @if (policy?.Value<DateTime?>("revisionDate") is DateTime revDate)
+    {
+        <span class="collapsed-date">
+            Last revised: @revDate.ToString("MMMM d, yyyy")
+        </span>
+    }
+</article>

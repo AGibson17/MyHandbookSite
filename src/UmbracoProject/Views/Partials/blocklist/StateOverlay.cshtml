@@ -1,0 +1,20 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem>
+@using Umbraco.Cms.Core.Models.Blocks
+
+@{
+    var stateCode = Model.Content.Value("stateCode")?.ToString();
+    var stateName = Model.Content.Value("stateName")?.ToString();
+    var statePolicyText = Model.Content.Value("statePolicyText")?.ToString();
+}
+
+@if (!string.IsNullOrWhiteSpace(statePolicyText))
+{
+    <div class="policy-overlay" data-state-code="@stateCode">
+        <h4 class="overlay-heading">
+            @stateName @(!string.IsNullOrWhiteSpace(stateCode) ? $"({stateCode})" : "")
+        </h4>
+        <div class="state-policy-text">
+            @Html.Raw(statePolicyText)
+        </div>
+    </div>
+}

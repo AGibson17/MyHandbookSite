@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
+@using Umbraco.Cms.Core.Models.PublishedContent
+
+@{
+    var selectedState = Context.Request.Query["state"].ToString()?.ToUpperInvariant();
+    var policies = Model.Children().Where(x => x.ContentType.Alias == "policy");
+}
+
+<p>DEBUG: Found @policies.Count() policies under @Model.Name</p>
+
+@if (policies != null && policies.Any())
+{
+    <div class="policy-grid">
+        @foreach (var policy in policies)
+        {
+            var overlay = !string.IsNullOrEmpty(selectedState)
+            ? policy.Value<IEnumerable<IPublishedElement>>("stateOverlays")
+            ?.FirstOrDefault(o => o.Value<string>("stateCode")?.ToUpper() == selectedState)
+            : null;
+
+            <partial name="blocklist/PolicyCard" model="policy" />
+        }
+    </div>
+}
+else
+{
+    <p aria-live="polite">No policies found under this category.</p>
+}

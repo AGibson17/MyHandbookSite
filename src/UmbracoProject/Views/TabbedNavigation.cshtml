@@ -1,0 +1,16 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    Layout = "~/Views/Shared/HandbookSite.cshtml";
+}
+
+<div class="tabbed-layout">
+    @await Html.PartialAsync("Partials/HeaderBar")
+
+    <div class="tabbed-wrapper">
+        @await Html.PartialAsync("Partials/TabbedPanels/TabNavigation")
+        <section class="tabbed-panels">
+            @await Html.PartialAsync("Partials/TabbedPanels/TabbedPanels")
+        </section>
+    </div>
+</div>

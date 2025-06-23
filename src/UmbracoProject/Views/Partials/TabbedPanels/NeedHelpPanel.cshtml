@@ -1,0 +1,32 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+    <div class="category-header">
+        <h1>Need Help?</h1>
+        <p>We're here to support you—whether you're having trouble finding a policy or just want to give feedback.</p>
+    </div>
+
+    <div class="help-panel-content">
+    <section class="faq-section" aria-labelledby="faq-heading">
+            <h2>Frequently Asked Questions</h2>
+            <ul class="faq-list">
+                <li>
+                    <strong>Why can’t I see state-specific policies?</strong>
+                    <p>Make sure you’ve selected your work state using the dropdown above the policies. Only California and Illinois are currently supported in this demo.</p>
+                </li>
+                <li>
+                    <strong>Why don’t I see anything when I select a category?</strong>
+                    <p>If a category has no policies assigned, you’ll see a message letting you know. Content is still being added!</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="contact-section">
+            <h2>Still Need Help?</h2>
+            <p>If you can’t find what you need, feel free to reach out or leave us feedback below.</p>
+        </section>
+
+        <section class="feedback-form-section">
+            <h2>Send Feedback</h2>
+            @await Html.PartialAsync("FeedbackForm")
+        </section>
+    </div>

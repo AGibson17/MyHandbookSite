@@ -1,0 +1,6 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
+@{
+    Layout = "Shared/HandbookSite.cshtml";
+}
+
+@await Html.PartialAsync("Partials/CategoryPage", Model)

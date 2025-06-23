@@ -1,0 +1,103 @@
+/* === Tablet (min-width 701px to 1024px) === */
+@media (min-width: 701px) and (max-width: 1024px) {
+    .tabbed-layout {
+        flex-direction: row;
+        height: 100vh;
+    }
+
+    .tabbed-wrapper {
+        flex-direction: row;
+        overflow: hidden;
+    }
+
+    .tabbed-sidebar {
+        flex-direction: column;
+        width: 80px;
+        height: 100%;
+        position: relative;
+        border-right: 1px solid #e0e0e0;
+    }
+
+    .tab-icon-list {
+        flex-direction: column;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tab-icon-button {
+        flex: 1 1 25%;
+        height: auto;
+        border-radius: 0;
+    }
+
+    .tabbed-panels {
+        flex: 1 1 auto;
+        overflow-y: auto;
+        padding: 1rem;
+        max-height: 100vh;
+    }
+}
+
+/* === Mobile (max-width 700px) === */
+@media (max-width: 700px) {
+    html, body {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .tabbed-layout {
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .tabbed-wrapper {
+        flex-direction: column;
+        flex: 1 1 auto;
+        overflow: hidden;
+    }
+
+    .tabbed-sidebar {
+        order: 2;
+        width: 100%;
+        height: 60px;
+        flex-shrink: 0;
+        border-top: 1px solid #e0e0e0;
+        background: var(--white);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+    }
+
+    .tab-icon-list {
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tab-icon-list li {
+        flex: 1;
+        display: flex;
+    }
+
+    .tab-icon-button {
+        flex: 1 1 auto;
+        height: 100%;
+        font-size: 1rem;
+        padding: 0.5rem;
+        border-radius: 0;
+    }
+
+    .tabbed-panels {
+        flex: 1 1 auto;
+        overflow-y: auto;
+        padding: 1rem;
+        padding-bottom: 4.5rem; /* Allow for tab nav height */
+    }
+}

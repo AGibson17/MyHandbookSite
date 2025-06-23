@@ -1,0 +1,13 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+<form class="feedback-form js-feedback-form" method="post" action="javascript:void(0);">
+    <label for="feedback-message">Your Feedback</label>
+<textarea id="feedback-message" name="feedback" rows="4" required aria-describedby="feedback-help"></textarea>
+    <small id="feedback-help" class="visually-hidden">Let us know if something was helpful, confusing, or missing.</small>
+
+
+    <label for="feedback-name">Name (optional)</label>
+    <input type="text" id="feedback-name" name="name" />
+
+    <button type="submit">Submit Feedback</button>
+</form>

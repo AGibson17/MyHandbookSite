@@ -1,0 +1,189 @@
+﻿/* === Header Bar Styles === */
+.tabbed-header {
+    background-color: var(--white);
+    border-bottom: 2px solid var(--iti-blue-light);
+    padding: 10px 0 16px;
+    width: 100%;
+}
+
+.logo-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iti-logo {
+    height: 60px;
+    min-width: 60px;
+}
+
+.site-title {
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: var(--iti-navy);
+    margin: 0;
+}
+
+.header-tagline {
+    font-size: 1.1rem;
+    color: var(--iti-blue);
+    margin-top: 6px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/* === Tabbed Layout === */
+.tabbed-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    min-height: calc(100vh - 100px);
+}
+
+.tabbed-wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    min-height: 0;
+}
+
+/* === Sidebar Tabs === */
+.tabbed-sidebar {
+    width: 300px;
+    flex-shrink: 0;
+    background-color: var(--white);
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.tab-list li {
+    flex: 1 1 25%;
+    display: flex;
+}
+
+
+.tab-icon-list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tab-icon-list li {
+    flex: 1 1 25%;
+    margin: 0;
+    padding: 0;
+}
+
+.tab-icon-button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--iti-blue);
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border-bottom: 1px solid #ffffff22; // Optional visual divider
+}
+
+.tab-icon-button:hover,
+.tab-icon-button:focus {
+    background-color: #e2e8f0;
+    color: var(--iti-navy);
+    outline: none;
+}
+
+.tab-icon-button[aria-selected="true"] {
+    background: var(--iti-red);
+}
+
+.tab-icon-button .icon {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.tab-icon-button .visually-hidden {
+    font-size: 0.85rem;
+}
+
+/* === Tab Panel Styles === */
+.tab-panel {
+    padding: 2rem 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* === Help Panel / Other Content Styles === */
+.help-panel-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.faq-section, .contact-section, .feedback-form-section {
+    background: #f8fafc;
+    padding: 1.5rem 1.25rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.faq-section h2,
+.contact-section h2,
+.feedback-form-section h2 {
+    font-size: 1.5rem;
+    color: var(--iti-blue);
+    margin-bottom: 1rem;
+}
+
+.faq-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.faq-list li {
+    margin-bottom: 1.25rem;
+}
+
+.faq-list strong {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--iti-navy);
+}
+
+.faq-list p {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+.contact-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.feedback-form-section {
+    padding-bottom: 2rem;
+}
