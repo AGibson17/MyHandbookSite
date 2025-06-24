@@ -1,0 +1,15 @@
+{
+  "Name": "CategoryContent",
+  "Alias": "CategoryContent",
+  "File": "umb://template-file/CategoryContent.cshtml",
+  "Udi": "umb://template/e4ce2cef11de4ae59ffc890198eb418a",
+  "Dependencies": [
+    {
+      "Udi": "umb://template-file/CategoryContent.cshtml",
+      "Ordering": true,
+      "Mode": "Exist"
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.TemplateArtifact",
+  "__version": "13.4.0"
+}
