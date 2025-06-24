@@ -9,7 +9,9 @@
   "Thumbnail": "folder.png",
   "Permissions": {
     "AllowedAtRoot": true,
-    "AllowedChildContentTypes": []
+    "AllowedChildContentTypes": [
+      "umb://document-type/40be58a16a65466090c8759ce1c110b2"
+    ]
   },
   "CompositionContentTypes": [],
   "PropertyGroups": [
@@ -65,6 +67,10 @@
     {
       "Udi": "umb://data-type/ca90c9500aff4e72b976a30b1ac57dad",
       "Ordering": true
+    },
+    {
+      "Udi": "umb://document-type/40be58a16a65466090c8759ce1c110b2",
+      "Mode": "Exist"
     },
     {
       "Udi": "umb://template/48187a803a844889899468228aba9853",
