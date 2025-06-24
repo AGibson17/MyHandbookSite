@@ -1,0 +1,20 @@
+{
+  "Name": "Handbook Page - Categories to Display - Multinode Treepicker",
+  "Alias": "",
+  "EditorAlias": "Umbraco.MultiNodeTreePicker",
+  "Configuration": {
+    "startNode": {
+      "type": "content",
+      "id": "umb://document/0d290b57fca74932b03c863d83910731"
+    },
+    "filter": "HandbookCategoryPage",
+    "minNumber": 0,
+    "maxNumber": 0,
+    "showOpenButton": false,
+    "ignoreUserStartNodes": false
+  },
+  "Udi": "umb://data-type/64687a44d2ba416ab990e8f33c0940d7",
+  "Dependencies": [],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
+  "__version": "13.4.0"
+}

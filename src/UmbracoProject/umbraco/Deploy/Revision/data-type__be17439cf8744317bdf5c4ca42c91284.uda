@@ -1,0 +1,95 @@
+{
+  "Name": "Policy Category",
+  "Alias": "",
+  "EditorAlias": "Umbraco.DropDown.Flexible",
+  "DatabaseType": "Nvarchar",
+  "Configuration": {
+    "multiple": false,
+    "items": [
+      {
+        "id": 1,
+        "value": "Equal Employment Opportunity (EEO)"
+      },
+      {
+        "id": 2,
+        "value": "Accommodations for Disabilities"
+      },
+      {
+        "id": 3,
+        "value": "Harassment & Discrimination"
+      },
+      {
+        "id": 4,
+        "value": "Workplace Conduct & Behavior"
+      },
+      {
+        "id": 5,
+        "value": "Attendance & Punctuality"
+      },
+      {
+        "id": 6,
+        "value": "Leave & Time Off"
+      },
+      {
+        "id": 7,
+        "value": "Compensation & Pay Practices"
+      },
+      {
+        "id": 8,
+        "value": "Benefits & Wellness"
+      },
+      {
+        "id": 9,
+        "value": "Safety & Security"
+      },
+      {
+        "id": 10,
+        "value": "Remote Work & Telecommuting"
+      },
+      {
+        "id": 11,
+        "value": "Use of Company Property/Technology"
+      },
+      {
+        "id": 12,
+        "value": "Social Media & Communications"
+      },
+      {
+        "id": 13,
+        "value": "Dress Code & Appearance"
+      },
+      {
+        "id": 14,
+        "value": "Confidentiality & Data Protection"
+      },
+      {
+        "id": 15,
+        "value": "Discipline & Termination"
+      },
+      {
+        "id": 16,
+        "value": "Grievance & Complaint Procedures"
+      },
+      {
+        "id": 17,
+        "value": "Drug & Alcohol Policy"
+      },
+      {
+        "id": 18,
+        "value": "Workplace Violence Prevention"
+      },
+      {
+        "id": 19,
+        "value": "Whistleblower Policy"
+      },
+      {
+        "id": 20,
+        "value": "General Employment Practices"
+      }
+    ]
+  },
+  "Udi": "umb://data-type/be17439cf8744317bdf5c4ca42c91284",
+  "Dependencies": [],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
+  "__version": "13.4.0"
+}

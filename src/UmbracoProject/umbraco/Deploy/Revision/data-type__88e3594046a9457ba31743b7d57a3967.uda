@@ -1,0 +1,27 @@
+{
+  "Name": "Handbook Policy Editor",
+  "Alias": "",
+  "EditorAlias": "Umbraco.BlockList",
+  "Configuration": {
+    "blocks": [
+      {
+        "contentElementTypeKey": "e881c8be-9ee4-4672-b526-81e7c82e93a1",
+        "label": "Policy Editor",
+        "editorSize": "medium",
+        "forceHideContentEditorInOverlay": false
+      }
+    ],
+    "validationLimit": {},
+    "useSingleBlockMode": false,
+    "useLiveEditing": true,
+    "useInlineEditingAsDefault": false
+  },
+  "Udi": "umb://data-type/88e3594046a9457ba31743b7d57a3967",
+  "Dependencies": [
+    {
+      "Udi": "umb://document-type/e881c8be9ee44672b52681e7c82e93a1"
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
+  "__version": "13.4.0"
+}
