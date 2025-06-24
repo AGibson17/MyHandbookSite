@@ -1,20 +1,17 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem>
-@using Umbraco.Cms.Core.Models.Blocks
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.PublishedContent.IPublishedElement>
 
 @{
-    var stateCode = Model.Content.Value("stateCode")?.ToString();
-    var stateName = Model.Content.Value("stateName")?.ToString();
-    var statePolicyText = Model.Content.Value("statePolicyText")?.ToString();
+    var stateCode = Model.Value<string>("stateCode");
+    var stateName = Model.Value<string>("stateName");
+    var policyText = Model.Value<string>("statePolicyText");
 }
 
-@if (!string.IsNullOrWhiteSpace(statePolicyText))
+@if (!string.IsNullOrWhiteSpace(policyText))
 {
     <div class="policy-overlay" data-state-code="@stateCode">
-        <h4 class="overlay-heading">
-            @stateName @(!string.IsNullOrWhiteSpace(stateCode) ? $"({stateCode})" : "")
-        </h4>
+        <h4>For employees who work in @stateName:</h4>
         <div class="state-policy-text">
-            @Html.Raw(statePolicyText)
+            @Html.Raw(policyText)
         </div>
     </div>
 }
