@@ -1,0 +1,67 @@
+{
+  "Name": "HandbookCategoryPage",
+  "Alias": "HandbookCategoryPage",
+  "AllowedTemplates": [
+    "umb://template/e4ce2cef11de4ae59ffc890198eb418a"
+  ],
+  "HistoryCleanup": {},
+  "Icon": "icon-document",
+  "Thumbnail": "folder.png",
+  "Permissions": {
+    "AllowedChildContentTypes": [
+      "umb://document-type/e881c8be9ee44672b52681e7c82e93a1"
+    ]
+  },
+  "CompositionContentTypes": [],
+  "PropertyGroups": [
+    {
+      "Key": "13d97d21-dad7-40ea-96d8-d995f09cc5b1",
+      "Name": "Content",
+      "Alias": "content",
+      "PropertyTypes": [
+        {
+          "Key": "98187a4f-5af5-44a6-a6d9-2f68e9e2f64d",
+          "Alias": "categoryDescription",
+          "DataType": "umb://data-type/c6bac0dd4ab945b18e30e4b619ee5da3",
+          "Description": "",
+          "MandatoryMessage": "",
+          "Name": "Category Description",
+          "SortOrder": 1,
+          "ValidationMessage": ""
+        },
+        {
+          "Key": "e12180ec-c2d8-4800-a693-36be635f79ab",
+          "Alias": "categoryTitle",
+          "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "Description": "",
+          "MandatoryMessage": "",
+          "Name": "Category Title",
+          "ValidationMessage": ""
+        }
+      ]
+    }
+  ],
+  "PropertyTypes": [],
+  "Udi": "umb://document-type/40be58a16a65466090c8759ce1c110b2",
+  "Dependencies": [
+    {
+      "Udi": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://data-type/c6bac0dd4ab945b18e30e4b619ee5da3",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://document-type/e881c8be9ee44672b52681e7c82e93a1",
+      "Mode": "Exist"
+    },
+    {
+      "Udi": "umb://template/e4ce2cef11de4ae59ffc890198eb418a",
+      "Ordering": true,
+      "Mode": "Exist"
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
+  "__version": "13.4.0"
+}

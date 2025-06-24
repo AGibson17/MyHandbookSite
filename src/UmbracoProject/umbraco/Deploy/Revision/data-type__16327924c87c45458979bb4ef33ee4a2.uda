@@ -1,0 +1,27 @@
+{
+  "Name": "Policy Card - State Overlays - Block List",
+  "Alias": "",
+  "EditorAlias": "Umbraco.BlockList",
+  "Configuration": {
+    "blocks": [
+      {
+        "contentElementTypeKey": "2e0e28b9-fc97-4bad-9111-b0d549970aad",
+        "label": "State Specific Policy",
+        "editorSize": "medium",
+        "forceHideContentEditorInOverlay": false
+      }
+    ],
+    "validationLimit": {},
+    "useSingleBlockMode": false,
+    "useLiveEditing": false,
+    "useInlineEditingAsDefault": false
+  },
+  "Udi": "umb://data-type/16327924c87c45458979bb4ef33ee4a2",
+  "Dependencies": [
+    {
+      "Udi": "umb://document-type/2e0e28b9fc974bad9111b0d549970aad"
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
+  "__version": "13.4.0"
+}

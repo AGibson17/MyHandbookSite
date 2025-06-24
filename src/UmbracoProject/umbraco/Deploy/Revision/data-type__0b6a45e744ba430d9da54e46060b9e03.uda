@@ -1,0 +1,35 @@
+{
+  "Name": "Policy_Category_Dropdown",
+  "Alias": "",
+  "EditorAlias": "Umbraco.DropDown.Flexible",
+  "DatabaseType": "Nvarchar",
+  "Configuration": {
+    "multiple": false,
+    "items": [
+      {
+        "id": 4,
+        "value": "paybenefits"
+      },
+      {
+        "id": 5,
+        "value": "leave"
+      },
+      {
+        "id": 6,
+        "value": "employment"
+      },
+      {
+        "id": 7,
+        "value": "conduct"
+      },
+      {
+        "id": 8,
+        "value": "safety"
+      }
+    ]
+  },
+  "Udi": "umb://data-type/0b6a45e744ba430d9da54e46060b9e03",
+  "Dependencies": [],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
+  "__version": "13.4.0"
+}

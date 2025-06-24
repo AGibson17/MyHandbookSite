@@ -1,0 +1,69 @@
+{
+  "Name": "State Overlay",
+  "Alias": "stateOverlay",
+  "AllowedTemplates": [],
+  "HistoryCleanup": {},
+  "Icon": "icon-science",
+  "Thumbnail": "folder.png",
+  "Permissions": {
+    "IsElementType": true,
+    "AllowedChildContentTypes": []
+  },
+  "CompositionContentTypes": [],
+  "PropertyGroups": [
+    {
+      "Key": "a1ced726-12ba-464f-b283-8023c5f424bf",
+      "Name": "Content",
+      "Alias": "content",
+      "PropertyTypes": [
+        {
+          "Key": "897a7998-939f-4e5e-a0ae-0ca756a558d5",
+          "Alias": "stateCode",
+          "DataType": "umb://data-type/f38f0ac71d27439c9f3f089cd8825a53",
+          "Description": "",
+          "MandatoryMessage": "",
+          "Name": "State Code",
+          "ValidationMessage": ""
+        },
+        {
+          "Key": "94112e18-9e16-4ccc-b4b9-0de1a3c16a48",
+          "Alias": "stateName",
+          "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "Description": "",
+          "MandatoryMessage": "",
+          "Name": "State Name",
+          "SortOrder": 1,
+          "ValidationMessage": ""
+        },
+        {
+          "Key": "e6e79273-ae4f-4f04-a2a7-653de272e9e5",
+          "Alias": "statePolicyText",
+          "DataType": "umb://data-type/ca90c9500aff4e72b976a30b1ac57dad",
+          "Description": "",
+          "MandatoryMessage": "",
+          "Name": "State Policy Text",
+          "SortOrder": 2,
+          "ValidationMessage": ""
+        }
+      ]
+    }
+  ],
+  "PropertyTypes": [],
+  "Udi": "umb://document-type/2e0e28b9fc974bad9111b0d549970aad",
+  "Dependencies": [
+    {
+      "Udi": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://data-type/ca90c9500aff4e72b976a30b1ac57dad",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://data-type/f38f0ac71d27439c9f3f089cd8825a53",
+      "Ordering": true
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
+  "__version": "13.4.0"
+}
