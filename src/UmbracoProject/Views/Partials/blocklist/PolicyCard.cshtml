@@ -42,21 +42,9 @@
             </div>
         }
 
-        @if (overlay != null && !string.IsNullOrWhiteSpace(overlay.Value<string>("statePolicyText")))
+        @if (overlay != null)
         {
-            <div class="policy-overlay" data-state-code="@(overlay.Value<string>("stateCode"))">
-                <h4>
-                    @if (!string.IsNullOrWhiteSpace(overlay.Value<string>("stateName")))
-                    {
-                        <span>@(overlay.Value<string>("stateName") + " Policy")</span>
-                    }
-                    else
-                    {
-                        <span>State-Specific Policy</span>
-                    }
-                </h4>
-                @Html.Raw(overlay.Value<string>("statePolicyText"))
-            </div>
+            @await Html.PartialAsync("blocklist/StateOverlay", overlay)
         }
     </section>
 

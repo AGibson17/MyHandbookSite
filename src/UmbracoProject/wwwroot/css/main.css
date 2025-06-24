@@ -846,6 +846,7 @@ img {
   cursor: pointer;
   transition: background 0.2s ease;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1333333333);
+  border-radius: 0 !important;
 }
 
 .tab-icon-button:hover,
@@ -1001,4 +1002,6 @@ img {
 
 .feedback-form button:hover {
   background: var(--iti-navy);
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */
