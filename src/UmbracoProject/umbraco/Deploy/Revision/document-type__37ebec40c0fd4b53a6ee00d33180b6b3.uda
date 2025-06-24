@@ -1,0 +1,77 @@
+{
+  "Name": "HandbookHomePage",
+  "Alias": "HandbookHomePage",
+  "AllowedTemplates": [
+    "umb://template/48187a803a844889899468228aba9853"
+  ],
+  "HistoryCleanup": {},
+  "Icon": "icon-item-arrangement",
+  "Thumbnail": "folder.png",
+  "Permissions": {
+    "AllowedAtRoot": true,
+    "AllowedChildContentTypes": []
+  },
+  "CompositionContentTypes": [],
+  "PropertyGroups": [
+    {
+      "Key": "b7023f2b-8abc-4c10-8e30-4ba360242c9a",
+      "Name": "Content",
+      "Alias": "content",
+      "PropertyTypes": [
+        {
+          "Key": "261b253b-36fd-48da-84fe-07e8165e0249",
+          "Alias": "introText",
+          "DataType": "umb://data-type/ca90c9500aff4e72b976a30b1ac57dad",
+          "Description": "",
+          "MandatoryMessage": "",
+          "Name": "Intro Text",
+          "SortOrder": 1,
+          "ValidationMessage": ""
+        },
+        {
+          "Key": "7479d2b2-a771-424b-96c3-8281701a8e97",
+          "Alias": "pageTitle",
+          "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "Description": "",
+          "Mandatory": true,
+          "MandatoryMessage": "",
+          "Name": "Page Title",
+          "ValidationMessage": ""
+        },
+        {
+          "Key": "e2e35091-ad07-4129-8666-3fe74e145a55",
+          "Alias": "categoriesToDisplay",
+          "DataType": "umb://data-type/64687a44d2ba416ab990e8f33c0940d7",
+          "Description": "",
+          "MandatoryMessage": "",
+          "Name": "Categories to Display",
+          "SortOrder": 2,
+          "ValidationMessage": ""
+        }
+      ]
+    }
+  ],
+  "PropertyTypes": [],
+  "Udi": "umb://document-type/37ebec40c0fd4b53a6ee00d33180b6b3",
+  "Dependencies": [
+    {
+      "Udi": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://data-type/64687a44d2ba416ab990e8f33c0940d7",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://data-type/ca90c9500aff4e72b976a30b1ac57dad",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://template/48187a803a844889899468228aba9853",
+      "Ordering": true,
+      "Mode": "Exist"
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
+  "__version": "13.4.0"
+}
