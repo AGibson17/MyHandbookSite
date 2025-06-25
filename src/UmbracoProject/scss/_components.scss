@@ -410,50 +410,6 @@
     color: var(--iti-navy);
 }
 
-.sticky-state-selector {
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    background: #f8fafc;
-    border-radius: 8px;
-    padding: 10px 18px 10px 14px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    z-index: 20;
-    border: 1.5px solid #e0e0e0;
-}
-
-.sticky-state-selector .info-icon {
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-}
-
-.sticky-state-selector .state-selector {
-    margin-left: 8px;
-}
-
-@keyframes stateHighlight {
-    0% {
-        box-shadow: 0 0 0 0 #58e08a;
-    }
-
-    70% {
-        box-shadow: 0 0 0 10px #58e08a55;
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 #58e08a00;
-    }
-}
-
-.sticky-state-selector.animated {
-    animation: stateHighlight 1.3s ease;
-}
-
-
 .visually-hidden {
     position: absolute;
     width: 1px;

@@ -6,23 +6,18 @@
 }
 
 <div class="category-page-container">
-    <div class="handbook-toolbar">
-        <div class="state-selector-wrapper sticky-state-selector">
+
+    <div class="policy-tab-header">
+        <div class="state-selector-wrapper">
             <label for="state"><strong>Choose your work state:</strong></label>
             <select class="state-selector" id="state" name="state">
                 <option value="">--Select a State--</option>
                 <option value="CA" selected="@(selectedState == "CA" ? "selected" : null)">California</option>
                 <option value="IL" selected="@(selectedState == "IL" ? "selected" : null)">Illinois</option>
             </select>
-            <span class="info-icon" tabindex="0" aria-label="Why does my state matter?" title="Some policies have state-specific requirements or overlays. Choose your primary work state for accurate policy info.">
-                <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#555" stroke-width="2" /><text x="12" y="16" text-anchor="middle" font-size="14" fill="#555" font-family="Arial" dy=".3em">i</text></svg>
-            </span>
         </div>
     </div>
 
-    <div class="section-divider-wrapper">
-        <hr class="section-divider" />
-    </div>
 
     <section class="category-header">
         <h1>@Model.Name</h1>

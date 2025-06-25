@@ -13,3 +13,34 @@
 .tab-panel[hidden] {
     display: none;
 }
+
+.policy-tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+}
+
+.policy-tab-header .back-to-categories {
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 0.6rem 1.1rem;
+    background: var(--iti-blue);
+    color: var(--white);
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+}
+
+.policy-tab-header .state-selector-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
