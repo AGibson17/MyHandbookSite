@@ -41,11 +41,6 @@
                 ?.FirstOrDefault(overlay => overlay.Value<string>("stateCode")?.ToUpper() == selectedState)
                 : null;
 
-                // DEBUG info about the current policy object
-                <div>
-                    POLICY: @policy.Name (@policy.Id) | Overlay: @(overlay != null ? "YES" : "NO")
-                </div>
-                // Now call the partial with anonymous object
                 @await Html.PartialAsync("blocklist/PolicyCard", policy)
             }
 
