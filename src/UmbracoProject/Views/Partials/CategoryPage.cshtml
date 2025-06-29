@@ -5,19 +5,30 @@
     var policies = Model.Children().Where(x => x.ContentType.Alias == "policyCard");
 }
 
-<div class="category-page-container">
+<div class="category-page-container" data-category-id="@Model.Id">
 
     <div class="policy-tab-header">
-        <div class="state-selector-wrapper">
-            <label for="state"><strong>Choose your work state:</strong></label>
-            <select class="state-selector" id="state" name="state">
-                <option value="">--Select a State--</option>
-                <option value="CA" selected="@(selectedState == "CA" ? "selected" : null)">California</option>
-                <option value="IL" selected="@(selectedState == "IL" ? "selected" : null)">Illinois</option>
-            </select>
-        </div>
-    </div>
+        <div class="state-selector-wrapper" style="margin-bottom: 1rem;">
+            <div id="current-state-label" style="display: none;">
+                <strong>Current Work State:</strong>
+                <span id="current-state-name">
+                    @(selectedState == "CA" ? "California" : selectedState == "IL" ? "Illinois" : "All Locations")
+                </span>
+                <button type="button" id="change-state-btn" style="margin-left: 8px; background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;">(Change)</button>
+            </div>
 
+            <form id="state-select-form" style="display: block;">
+                <label for="state"><strong>Choose Your Work State:</strong></label>
+                <select id="state" name="state" class="state-selector">
+                    <option value="" selected="@(string.IsNullOrEmpty(selectedState))">All Locations</option>
+                    <option value="CA" selected="@(selectedState == "CA")">California</option>
+                    <option value="IL" selected="@(selectedState == "IL")">Illinois</option>
+                </select>
+            </form>
+        </div>
+
+        <div id="state-change-feedback" class="state-feedback" style="display: none; color: green; font-size: 0.9rem; margin-top: 4px;"></div>
+    </div>
 
     <section class="category-header">
         <h1>@Model.Name</h1>
@@ -43,7 +54,6 @@
 
                 @await Html.PartialAsync("blocklist/PolicyCard", policy)
             }
-
         </div>
     }
     else
@@ -51,45 +61,3 @@
         <p class="text-center mt-2">There are no policies assigned to this category.</p>
     }
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // SPA: "Back to All Categories" button
-        var backBtn = document.getElementById("back-to-categories-btn");
-        if (backBtn) {
-            backBtn.addEventListener("click", function () {
-                // Hide the current category and show the grid (handled by tabbed-navigation.js)
-                var categoryContent = parent.document.getElementById("policies-category-content");
-                var categoryGrid = parent.document.getElementById("category-grid");
-                if (categoryContent) categoryContent.style.display = "none";
-                if (categoryGrid) categoryGrid.style.display = "grid";
-                // Optionally: clear loaded content
-            });
-        }
-
-        // SPA: State selector (no page reload)
-        var stateSelect = document.getElementById("state");
-        if (stateSelect) {
-            stateSelect.addEventListener("change", function () {
-                var newState = stateSelect.value;
-                var categoryId = '@Model.Id';
-                // AJAX request for this category and new state
-                fetch(`/umbraco/api/policies/getcategory?categoryId=${categoryId}&state=${newState}`)
-                    .then(response => response.text())
-                    .then(html => {
-                        // Replace the category content (this whole container)
-                        var container = parent.document.getElementById("policies-category-content");
-                        if (container) container.innerHTML = html;
-                    });
-                // Optionally: animate/highlight the selector (see previous CSS for .animated)
-                var stickySelector = document.querySelector('.sticky-state-selector');
-                if (stickySelector) {
-                    stickySelector.classList.add('animated');
-                    setTimeout(function () {
-                        stickySelector.classList.remove('animated');
-                    }, 1300);
-                }
-            });
-        }
-    });
-</script>

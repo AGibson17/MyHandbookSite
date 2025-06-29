@@ -1,6 +1,6 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     // === TAB NAVIGATION LOGIC ===
-    const tabs = document.querySelectorAll(".tab-icon-button");
+    const tabs = document.querySelectorAll(".tab-text-button");
     const panels = document.querySelectorAll(".tab-panel");
 
     function activateTab(tabToActivate) {
@@ -84,7 +84,21 @@
 
     function loadCategoryPolicies(btn) {
         const categoryId = btn.getAttribute("data-category-id");
-        const state = btn.getAttribute("data-state");
+        let state = btn.getAttribute("data-state") || getCurrentState();
+        
+        // Ensure we have valid values
+        if (!categoryId) {
+            const categoryContent = document.getElementById("policies-category-content");
+            if (categoryContent) {
+                categoryContent.innerHTML = "<p>Missing category ID. Cannot load policies.</p>";
+            }
+            return;
+        }
+
+        // Convert UNIVERSAL to empty string for the API call
+        if (state === "UNIVERSAL") {
+            state = "";
+        }
 
         const categoryGrid = document.getElementById("category-grid");
         const categoryContent = document.getElementById("policies-category-content");
@@ -95,9 +109,13 @@
             categoryContent.innerHTML = '<p class="loading">Loading policies...</p>';
         }
 
-        fetch(`/umbraco/api/policies/getcategory?categoryId=${categoryId}&state=${state}`)
+        const fetchUrl = `/umbraco/api/policies/getcategory?categoryId=${categoryId}&state=${state}`;
+
+        fetch(fetchUrl)
             .then(response => {
-                if (!response.ok) throw new Error("Network error");
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 return response.text();
             })
             .then(html => {
@@ -115,10 +133,15 @@
                             initPolicyCategoryButtons(); // Re-attach handlers
                         });
                     }
+
+                    // Initialize state selector in the loaded content
+                    initCategoryStateSelector();
                 }
             })
-            .catch(() => {
-                if (categoryContent) categoryContent.innerHTML = "<p>Error loading policy category.</p>";
+            .catch((error) => {
+                if (categoryContent) {
+                    categoryContent.innerHTML = `<p>Error loading policy category: ${error.message}</p>`;
+                }
             });
     }
 
@@ -142,47 +165,139 @@
     });
 
     // === STATE SELECTOR ===
-    const stateLabel = document.getElementById("current-state-label");
-    const stateName = document.getElementById("current-state-name");
-    const changeBtn = document.getElementById("change-state-btn");
-    const stateForm = document.getElementById("state-select-form");
-    const stateSelector = document.getElementById("state");
-    const stickySelector = document.querySelector(".sticky-state-selector");
-    let stateChangedOnce = false;
+    const stateDisplayNames = {
+        "CA": "California",
+        "IL": "Illinois",
+        "UNIVERSAL": "All Locations"
+    };
 
-    if (changeBtn && stateForm && stateLabel) {
-        changeBtn.addEventListener("click", () => {
+    function getCurrentState() {
+        return localStorage.getItem("selectedState") || "UNIVERSAL";
+    }
+
+    function updateDisplayedState(state, stateNameElement, changeBtnElement) {
+        if (stateNameElement) {
+            stateNameElement.textContent = stateDisplayNames[state] || "All Locations";
+        }
+
+        // Update all category buttons with the new state
+        document.querySelectorAll(".policy-category-btn").forEach(btn => {
+            btn.setAttribute("data-state", state);
+        });
+    }
+
+    function showStateFeedback(message) {
+        const stateFeedback = document.getElementById("state-change-feedback");
+        if (!stateFeedback) return;
+        stateFeedback.textContent = message;
+        stateFeedback.style.display = "block";
+        setTimeout(() => {
+            stateFeedback.style.display = "none";
+        }, 1800);
+    }
+
+    function initCategoryStateSelector() {
+        const stateLabel = document.getElementById("current-state-label");
+        const stateName = document.getElementById("current-state-name");
+        const changeBtn = document.getElementById("change-state-btn");
+        const stateForm = document.getElementById("state-select-form");
+        const stateSelector = document.getElementById("state");
+
+        if (!stateLabel || !stateName || !changeBtn || !stateForm || !stateSelector) {
+            return;
+        }
+
+        // Check if there's a saved state
+        const savedState = getCurrentState();
+        
+        // Initial display logic based on specification
+        if (savedState === "UNIVERSAL") {
+            // First load, no localStorage or default state - show full dropdown
             stateLabel.style.display = "none";
-            changeBtn.style.display = "none";
-            stateForm.style.display = "inline";
+            stateForm.style.display = "block";
+            stateSelector.value = "";
+        } else {
+            // State is stored - show compact format
+            updateDisplayedState(savedState, stateName, changeBtn);
+            stateSelector.value = savedState;
+            stateLabel.style.display = "block";
+            stateForm.style.display = "none";
+        }
+
+        // Handle change button click - revert to full dropdown
+        changeBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            stateLabel.style.display = "none";
+            stateForm.style.display = "block";
             stateSelector.focus();
         });
 
+        // Handle state selector change
         stateSelector.addEventListener("change", () => {
             const newState = stateSelector.value || "UNIVERSAL";
+            
+            // Save to localStorage
+            localStorage.setItem("selectedState", newState);
 
-            if (stickySelector && !stateChangedOnce) {
-                stickySelector.classList.add("animated");
-                setTimeout(() => stickySelector.classList.remove("animated"), 1300);
-                stateChangedOnce = true;
+            // Update display
+            updateDisplayedState(newState, stateName, changeBtn);
+
+            if (newState === "UNIVERSAL") {
+                // Keep showing dropdown for "All Locations" (per specification this stays as dropdown)
+                stateLabel.style.display = "none";
+                stateForm.style.display = "block";
+            } else {
+                // Switch to compact format for specific states
+                stateLabel.style.display = "block";
+                stateForm.style.display = "none";
             }
 
-            stateName.textContent = newState === "CA" ? "California" :
-                newState === "IL" ? "Illinois" : "All Locations";
+            // Show confirmation message
+            showStateFeedback(`State updated to ${stateDisplayNames[newState] || "All Locations"}.`);
 
-            stateForm.style.display = "none";
-            stateLabel.style.display = "inline";
-            changeBtn.style.display = "inline";
-
-            document.querySelectorAll(".policy-category-btn").forEach(btn => {
-                btn.setAttribute("data-state", newState);
-            });
-
+            // Reload the current category with new state
             const categoryContent = document.getElementById("policies-category-content");
-            const currentCategoryBtn = document.querySelector(".policy-category-btn[data-active='true']");
-            if (categoryContent?.style.display === "block" && currentCategoryBtn) {
-                currentCategoryBtn.click();
+            if (categoryContent && categoryContent.style.display === "block") {
+                const categoryId = categoryContent.querySelector('[data-category-id]')?.getAttribute('data-category-id');
+                if (categoryId) {
+                    let apiState = newState === "UNIVERSAL" ? "" : newState;
+                    fetch(`/umbraco/api/policies/getcategory?categoryId=${categoryId}&state=${apiState}`)
+                        .then(response => response.text())
+                        .then(html => {
+                            categoryContent.innerHTML = `
+                                <button type="button" class="back-to-categories-btn">← Back to categories</button>
+                                ${html}
+                            `;
+
+                            const backBtn = categoryContent.querySelector(".back-to-categories-btn");
+                            if (backBtn) {
+                                backBtn.addEventListener("click", function () {
+                                    categoryContent.style.display = "none";
+                                    const categoryGrid = document.getElementById("category-grid");
+                                    if (categoryGrid) categoryGrid.style.display = "grid";
+                                    initPolicyCategoryButtons();
+                                });
+                            }
+
+                            // Re-initialize state selector
+                            initCategoryStateSelector();
+                        })
+                        .catch((error) => {
+                            categoryContent.innerHTML = `<p>Error loading policy category: ${error.message}</p>`;
+                        });
+                }
             }
         });
     }
+
+    // Initialize state selectors when page loads
+    setTimeout(() => {
+        initCategoryStateSelector();
+    }, 100);
+    
+    // Make sure category buttons have the current state when the page loads
+    setTimeout(() => {
+        const currentState = getCurrentState();
+        updateDisplayedState(currentState);
+    }, 200);
 });

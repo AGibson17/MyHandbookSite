@@ -7,9 +7,14 @@
     var cardId = $"policy-{policy.Id}";
     var selectedState = Context.Request.Query["state"].ToString()?.ToUpperInvariant();
 
+    // Handle empty or null state as "UNIVERSAL"
+    if (string.IsNullOrEmpty(selectedState) || selectedState == "UNIVERSAL") {
+        selectedState = null; // Don't show overlays for universal/all locations
+    }
+
     var overlay = !string.IsNullOrEmpty(selectedState)
         ? policy.Value<IEnumerable<IPublishedElement>>("stateOverlays")
-            ?.FirstOrDefault(o => o.Value<string>("stateCode")?.ToUpper() == selectedState)
+            ?.FirstOrDefault(o => o.Value<string>("stateCode")?.ToUpperInvariant() == selectedState)
         : null;
 }
 

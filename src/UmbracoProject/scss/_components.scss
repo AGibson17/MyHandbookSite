@@ -3,7 +3,7 @@
 .iti-header {
     background: var(--white);
     border-bottom: 2px solid var(--iti-blue-light);
-    padding: 32px 0 16px 0;
+    padding: 0 0 16px 0;
     width: 100%;
 }
 
@@ -16,15 +16,18 @@
     flex-direction: row;
     align-items: center;
     padding: 0 24px;
+    z-index: 2;
 }
 
 .iti-logo {
-    position: absolute;
-    left: 24px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 70px;
-    min-width: 80px;
+    height: 60px;
+    min-width: 100%;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: filter 0.3s ease;
+}
+
+.iti-logo:hover {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
 .header-titles {
@@ -36,30 +39,28 @@
 .header-titles h1 {
     font-size: 36px;
     font-weight: 700;
-    color: var(--iti-navy);
+    color: var(--white);
     margin: 0;
 }
 
 .header-titles p {
     font-size: 18px;
     font-weight: 500;
-    color: var(--black);
+    color: var(--white);
     margin: 18px auto 0;
 }
 
 .header-tagline {
-    display: block;
-    font-size: 1.09rem;
+    font-size: 1.1rem;
     color: var(--iti-blue);
-    margin-top: 2px;
+    margin-top: 6px;
     font-weight: 400;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
+    opacity: 0.9;
 }
 
-.handbook-main {
-    padding-top: 16px;
-    padding-bottom: 20px;
-}
+
 
 .handbook-toolbar {
     display: flex;
@@ -182,22 +183,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 12px 20px;
+    gap: 2rem;
+    padding: 0 1rem;
 }
 
+
 .policy-card {
-    background: #ffffff;
-    border-radius: 18px;
-    box-shadow: 0 4px 18px rgba(63, 130, 196, 0.1), 0 1.5px 7px rgba(25, 66, 114, 0.08);
-    padding: 32px 24px 24px 24px;
+    background: #fff;
+    padding: 1.25rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 4px 16px rgba(0, 40, 120, 0.08);
     display: flex;
     flex-direction: column;
-    min-width: 50vw;
-    max-width: 70vw;
-    border: 1.5px solid var(--iti-blue-light);
-    margin-bottom: 2rem;
-    text-align: left;
+    justify-content: flex-start;
 }
 
 .policy-card-content {
@@ -225,17 +225,15 @@
 }
 
 .policy-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
     width: 100%;
     background-color: var(--iti-blue);
-    color: #F9F9FA;
-    padding: 1rem;
+    color: #fff;
+    padding: 1.25rem;
     font-size: 1.25rem;
-    font-weight: bold;
+    font-weight: 700;
     border: none;
     border-radius: 12px 12px 0 0;
+    text-align: left;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }

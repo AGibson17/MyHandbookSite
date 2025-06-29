@@ -9,6 +9,7 @@ using System.IO;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.Controllers;
+using Microsoft.Extensions.Primitives;
 
 namespace MyHandbookSite.Controllers
 {
@@ -36,21 +37,54 @@ namespace MyHandbookSite.Controllers
         }
 
         [HttpGet("getcategory")]
-        public IActionResult GetCategory(int categoryId, string state)
+        public IActionResult GetCategory(int categoryId, string state = "")
         {
-            using var cref = _contextFactory.EnsureUmbracoContext();
-            var content = cref.UmbracoContext.Content?.GetById(categoryId);
-            if (content == null)
-                return NotFound("Category not found.");
+            try
+            {
+                using var cref = _contextFactory.EnsureUmbracoContext();
+                var content = cref.UmbracoContext.Content?.GetById(categoryId);
+                if (content == null)
+                    return NotFound("Category not found.");
 
-            // Pass state via querystring manually
-            var qs = string.IsNullOrEmpty(state) ? "" : $"?state={state}";
-            var request = _httpContextAccessor.HttpContext;
-            request.Request.QueryString = new QueryString(qs);
+                // Get the current HttpContext
+                var httpContext = _httpContextAccessor.HttpContext;
+                if (httpContext == null)
+                    return StatusCode(StatusCodes.Status500InternalServerError, "HttpContext is unavailable.");
 
-            var html = RenderViewToString("~/Views/Partials/CategoryPage.cshtml", content);
-
-            return Content(html, "text/html");
+                // Store original query string
+                var originalQueryString = httpContext.Request.QueryString;
+                
+                try
+                {
+                    // Create a simple query string with just the state parameter if needed
+                    string newQueryString = "";
+                    if (!string.IsNullOrEmpty(state))
+                    {
+                        newQueryString = $"?state={Uri.EscapeDataString(state)}";
+                    }
+                    
+                    // Temporarily set the query string for the view rendering
+                    httpContext.Request.QueryString = new QueryString(newQueryString);
+                    
+                    var html = RenderViewToString("~/Views/Partials/CategoryPage.cshtml", content);
+                    
+                    return Content(html, "text/html");
+                }
+                finally
+                {
+                    // Restore original query string
+                    httpContext.Request.QueryString = originalQueryString;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception details for debugging
+                System.Diagnostics.Debug.WriteLine($"Error in GetCategory: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Stack trace: {ex.StackTrace}");
+                
+                return StatusCode(StatusCodes.Status500InternalServerError, 
+                    $"An error occurred while loading the category: {ex.Message}");
+            }
         }
 
         private string RenderViewToString(string viewPath, object model)
@@ -61,7 +95,6 @@ namespace MyHandbookSite.Controllers
 
             var routeData = httpContext.GetRouteData();
             var actionContext = new ActionContext(httpContext, routeData, new Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor());
-
 
             using var sw = new StringWriter();
 
